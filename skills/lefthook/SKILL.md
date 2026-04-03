@@ -31,6 +31,17 @@ Choose the simplest structure that fits the workflow.
 - Use `glob`, `exclude`, `file_types`, and `root` to keep commands narrow and fast.
 - Reach for `lefthook-local.*` when the user wants local-only skips, Docker wrappers, or private overrides that should not change the shared team config.
 
+Quick start snippet for a new JS or TS repo that already uses ESLint:
+
+```yml
+pre-commit:
+  commands:
+    eslint:
+      glob: "*.{js,jsx,ts,tsx}"
+      run: pnpm eslint --fix {staged_files}
+      stage_fixed: true
+```
+
 Read [overview.md](./references/overview.md) for install and command flow, [config-model.md](./references/config-model.md) for structure and merge behavior, [patterns.md](./references/patterns.md) for common recipes, [best-practices.md](./references/best-practices.md) when the user asks for battle-tested guidance, and [schema-cheatsheet.md](./references/schema-cheatsheet.md) for exact keys.
 
 ## Explain And Debug
@@ -56,7 +67,7 @@ When reviewing an existing config, call out:
 
 ## Use Bundled Resources
 
-- Copy starter snippets from `assets/` when a user wants a quick starting point.
+- For a quick starting point, copy `assets/minimal-pre-commit.yml`. For JS or TS repos, copy `assets/js-ts-pre-commit.yml`. Then adapt the package manager and commands to the repo.
 - Load `references/patterns.md` for concrete recipes before drafting a non-trivial config.
 - Load `references/best-practices.md` when the user explicitly asks for recommendations or wants rationale backed by real-world Lefthook usage.
 - Load `references/schema-cheatsheet.md` when exact option spelling or allowed nesting matters.
